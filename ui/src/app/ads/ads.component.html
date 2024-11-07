@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h2>Job Ads</h2>
+  <ul class="list-group">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let ad of ads()"
+    >
+      <a [routerLink]="['/ads', ad.id]" class="text-decoration-none">{{ ad.title }}</a>
+      <button class="btn btn-danger btn-sm" (click)="deleteAd(ad.id)">Delete</button>
+    </li>
+  </ul>
+</div>

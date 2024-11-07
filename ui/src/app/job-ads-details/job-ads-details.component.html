@@ -1,0 +1,91 @@
+<div class="container mt-5">
+  <h3 class="text-center">Job Detail: {{ adId() }}</h3>
+
+  <div *ngIf="adId() != -1">
+    <form>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          [(ngModel)]="title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="textEN" class="form-label">Text EN</label>
+        <input
+          type="text"
+          id="textEN"
+          name="textEN"
+          class="form-control"
+          [(ngModel)]="textEN"
+        />
+      </div>
+      <button type="button" class="btn btn-primary mb-4" (click)="updateJob()">
+        Update
+      </button>
+
+      <div *ngFor="let translation of translations(); let i = index" class="mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ translation.language }}
+            </h5>
+            <p class="card-text">
+              {{ translation.translatedText }}
+            </p>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteTranslation(translation.language)"
+            >
+              Delete Translation
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3>New Translation</h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="lang" class="form-label">Language</label>
+            <input
+              type="text"
+              id="lang"
+              name="lang"
+              class="form-control"
+              [(ngModel)]="lang"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="translatedText" class="form-label">Translated Text</label>
+            <input
+              type="text"
+              id="translatedText"
+              name="translatedText"
+              class="form-control"
+              [(ngModel)]="translatedText"
+            />
+          </div>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+          <button type="button" class="btn btn-success" (click)="addTranslation()">
+            Add Translation
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="autoTranslate()">
+            Auto-Translate
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="mt-4">
+    <button type="button" class="btn btn-outline-secondary" (click)="returnToAllJobs()">
+      Return to all jobs
+    </button>
+  </div>
+</div>
